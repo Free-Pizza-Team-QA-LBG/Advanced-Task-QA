@@ -1,7 +1,7 @@
 package com.ims.model;
 
 /**
- * @author Alex Terry
+ * @author Alexander Terryson
  * @version 23/10/2024
  *  - Implement the Employee class in the model package. It should have:
  *    - Fields matching the database structure: id, first_name, last_name, email, department, salary.
