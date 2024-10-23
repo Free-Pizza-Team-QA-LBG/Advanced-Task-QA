@@ -10,9 +10,9 @@ public interface EmployeeDAO {
 
     Employee readEmployee(int id);
 
-    void updateEmployee(Employee employee);
+    boolean updateEmployee(Employee employee);
 
-    void deleteEmployee(int id);
+    boolean deleteEmployee(int id);
 
     ArrayList<Employee> getAllEmployees();
 }

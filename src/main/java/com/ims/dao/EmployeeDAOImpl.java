@@ -25,11 +25,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             );
 
             stmt.setInt(1, employee.getId());
-            stmt.setString(1, employee.getFirstName());
-            stmt.setString(1, employee.getLastName());
-            stmt.setString(1, employee.getEmail());
-            stmt.setString(1, employee.getDepartment());
-            stmt.setFloat(1, employee.getSalary());
+            stmt.setString(2, employee.getFirstName());
+            stmt.setString(3, employee.getLastName());
+            stmt.setString(4, employee.getEmail());
+            stmt.setString(5, employee.getDepartment());
+            stmt.setFloat(6, employee.getSalary());
 
             int insertedRowsCount = stmt.executeUpdate();
 
@@ -93,13 +93,56 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
+    public boolean updateEmployee(Employee employee) {
+        PreparedStatement stmt = null;
 
+        try {
+            stmt = connection.prepareStatement(
+                    "UPDATE employees SET first_name = ?, last_name = ?, email = ?, department = ?, salary = ? WHERE id = ?"
+            );
+
+            stmt.setString(1, employee.getFirstName());
+            stmt.setString(2, employee.getLastName());
+            stmt.setString(3, employee.getEmail());
+            stmt.setString(4, employee.getDepartment());
+            stmt.setFloat(5, employee.getSalary());
+            stmt.setInt(6, employee.getId());
+
+            int updatedRowsCount = stmt.executeUpdate();
+
+            return updatedRowsCount > 0;
+        } catch (SQLException e) {
+            // TODO: Handle error
+            System.out.println("error: " + e.getMessage());
+        } finally {
+            DBConnection.closeStatement(stmt);
+        }
+
+        return false;
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public boolean deleteEmployee(int id) {
+        PreparedStatement stmt = null;
 
+        try {
+            stmt = connection.prepareStatement(
+                    "DELETE FROM employees WHERE id = ?"
+            );
+
+            stmt.setInt(1, id);
+
+            int deletedRowsCount = stmt.executeUpdate();
+
+            return deletedRowsCount > 0;
+        } catch (SQLException e) {
+            // TODO: Handle error
+            System.out.println("error: " + e.getMessage());
+        } finally {
+            DBConnection.closeStatement(stmt);
+        }
+
+        return false;
     }
 
     @Override
