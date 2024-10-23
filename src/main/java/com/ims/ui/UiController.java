@@ -1,5 +1,6 @@
 package com.ims.ui;
-
+import javax.management.RuntimeErrorException;
+import java.util.Scanner;
 
 
 /**
@@ -17,9 +18,60 @@ package com.ims.ui;
 
 public class UiController {
 
-    public void Initialise(){
+    private Scanner scanner;
+
+    /**
+     *  Initialises scanner - global to object.
+     *  Standard constructor
+     */
+    public void UiController(){
+        this.scanner = new Scanner(System.in);
+    }
+
+
+    /**
+     *  Reads a user-written line from terminal using scanner. Returns it.
+     *
+     */
+    public String ReadLineFromUser() throws Exception {
+        if(scanner == null){
+            throw new Exception("There exists no scanner - you cannot read");
+        }
+
+        System.out.println("oi m8 whots u wont to do?");
+        String userInputString = scanner.nextLine();
+        return userInputString;
+    }
+
+
+    // this is all incredibly janky but we don't quite know how it will look yet - all subject to change
+
+    public void AddEmployee(){
 
     }
+
+    public void ViewEmployeeDetails(int id){
+
+    }
+
+    public void UpdateEmployeeDetails(int id){
+
+    }
+
+    public void DeleteEmployeeDetails(int id){
+
+    }
+
+    public void ListAllEmployees(){
+
+    }
+
+
+
+
+
+
+
 
     
 
