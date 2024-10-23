@@ -1,9 +1,9 @@
 package com.ims.ui;
 
-public class uiController {
+public class UiController {
 
     public void Initialise(){
-        
+
     }
 
 
