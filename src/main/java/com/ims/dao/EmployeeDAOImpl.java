@@ -24,7 +24,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
             int employeeId = employee.getId();
             if (employeeId > 0) {
-                stmt.setInt(1, employee.getId());
+                stmt.setInt(1, employeeId);
             } else {
                 stmt.setNull(1, Types.NULL);
             }
