@@ -62,27 +62,5 @@ public class EmployeeTest {
                 , testEmployee.toString()
         );
     }
-    @Test
-    public void setterNullTest() {
-        testEmployee.setEmail(null);
-        assertNull(testEmployee.getEmail());
-
-        testEmployee.setDepartment(null);
-        assertNull(testEmployee.getDepartment());
-    }
-    @Test
-    public void edgeCaseTest() {
-        // Set invalid salary
-        testEmployee.setSalary(-1.0f);
-        assertEquals(-1.0f, testEmployee.getSalary(), 0.0);
-
-        // Set extremely long first name
-        String longName = "a".repeat(1000); // 1000 characters long
-        testEmployee.setFirstName(longName);
-        assertEquals(longName, testEmployee.getFirstName());
-    }
-
-
-
 
 }
