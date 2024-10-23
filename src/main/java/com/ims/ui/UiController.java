@@ -18,14 +18,14 @@ import java.util.Scanner;
 
 public class UiController {
 
-    Scanner scanner;
+    private Scanner scanner;
 
     /**
      *  Initialises scanner - global to object.
-     *
+     *  Standard constructor
      */
-    public void InitialiseScanner(){
-        scanner = new Scanner(System.in);
+    public void UiController(){
+        this.scanner = new Scanner(System.in);
     }
 
 
