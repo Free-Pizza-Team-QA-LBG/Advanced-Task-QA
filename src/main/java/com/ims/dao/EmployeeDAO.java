@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface EmployeeDAO {
-    boolean createEmployee(Employee employee) throws SQLException;
+    boolean createEmployee(Employee employee);
 
-    Employee readEmployee(int id) throws SQLException;
+    Employee readEmployee(int id);
 
-    void updateEmployee(Employee employee) throws SQLException;
+    void updateEmployee(Employee employee);
 
-    void deleteEmployee(int id) throws SQLException;
+    void deleteEmployee(int id);
 
-    ArrayList<Employee> getAllEmployees() throws SQLException;
+    ArrayList<Employee> getAllEmployees();
 }

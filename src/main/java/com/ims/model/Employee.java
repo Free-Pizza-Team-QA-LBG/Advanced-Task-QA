@@ -32,7 +32,7 @@ public class Employee {
                     Name: %s %s
                     Email: %s
                     Department: %s
-                    Salary: %f
+                    Salary: %.2f
                     """.formatted(id, firstName, lastName, email, department, salary);
     }
 
