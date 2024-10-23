@@ -1,7 +1,8 @@
 package com.ims.main;
 
-import com.ims.dao.DBConnection;
+
 import com.ims.ui.StaticUiController;
+
 
 public class Main {
 
