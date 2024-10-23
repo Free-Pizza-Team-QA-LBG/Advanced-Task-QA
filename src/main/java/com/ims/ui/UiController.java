@@ -72,22 +72,27 @@ public class UiController {
     // this is all incredibly janky but we don't quite know how it will look yet - all subject to change
 
     void addEmployee(String[] args) {
+        System.out.println("Adding employee");
 
     }
 
     void viewEmployeeDetails(int id) {
+        System.out.println("Viewing employee");
 
     }
 
     void updateEmployeeDetails(int id, String[] args) {
+        System.out.println("Updating employee");
 
     }
 
     void deleteEmployeeDetails(int id) {
+        System.out.println("Deleting employee");
 
     }
 
     void listAllEmployees() {
+        System.out.println("Listing employees");
 
     }
 
