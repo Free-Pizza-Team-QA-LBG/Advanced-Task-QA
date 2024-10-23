@@ -9,5 +9,8 @@
         <module name="Advanced-Task-QA" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Advanced-Task-QA" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
