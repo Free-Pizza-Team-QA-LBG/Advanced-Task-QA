@@ -22,7 +22,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     Statement.RETURN_GENERATED_KEYS
             );
 
-            stmt.setInt(1, employee.getId());
+            int employeeId = employee.getId();
+            if (employeeId > 0) {
+                stmt.setInt(1, employee.getId());
+            } else {
+                stmt.setNull(1, Types.NULL);
+            }
+
             stmt.setString(2, employee.getFirstName());
             stmt.setString(3, employee.getLastName());
             stmt.setString(4, employee.getEmail());
