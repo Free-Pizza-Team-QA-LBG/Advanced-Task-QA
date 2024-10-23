@@ -2,10 +2,7 @@ package com.ims.dao;
 
 import com.ims.model.Employee;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -21,10 +18,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
         try {
             stmt = connection.prepareStatement(
-                    "INSERT INTO employees VALUES (?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO employees VALUES (?, ?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS
             );
 
-            stmt.setInt(1, employee.getId());
+            int employeeId = employee.getId();
+            if (employeeId > 0) {
+                stmt.setInt(1, employee.getId());
+            } else {
+                stmt.setNull(1, Types.NULL);
+            }
+
             stmt.setString(2, employee.getFirstName());
             stmt.setString(3, employee.getLastName());
             stmt.setString(4, employee.getEmail());

@@ -12,7 +12,7 @@ public class DBConnection {
         if (conn == null) {
             try {
                 Properties dbProperties = getProperties();
-                String dbUrl = dbProperties.getProperty("dbUrl");
+                String dbUrl = dbProperties.getProperty("url");
                 conn = DriverManager.getConnection(dbUrl, dbProperties);
             } catch (SQLException e) {
                 // TODO: Handle error
@@ -23,7 +23,7 @@ public class DBConnection {
         return conn;
     }
 
-    public static Properties getProperties() {
+    private static Properties getProperties() {
         try (FileInputStream stream = new FileInputStream("database.properties")) {
             Properties properties = new Properties();
             properties.load(stream);
