@@ -8,6 +8,11 @@ import java.util.Properties;
 public class DBConnection {
     private static Connection conn = null;
 
+    /**
+     * Gets the active connection to the database if available, otherwise creates and returns a new connection.
+     *
+     * @return The Connection object
+     */
     public static Connection getConnection() {
         if (conn == null) {
             try {
@@ -23,6 +28,11 @@ public class DBConnection {
         return conn;
     }
 
+    /**
+     * Retrieves the database credentials from the properties file.
+     *
+     * @return The database credentials as a Properties object
+     */
     private static Properties getProperties() {
         try (FileInputStream stream = new FileInputStream("database.properties")) {
             Properties properties = new Properties();
@@ -36,6 +46,11 @@ public class DBConnection {
         return null;
     }
 
+    /**
+     * Closes a PreparedStatement object if non-null.
+     *
+     * @param stmt The statement to be closed.
+     */
     public static void closeStatement(Statement stmt) {
         if (stmt != null) {
             try {
@@ -47,6 +62,11 @@ public class DBConnection {
         }
     }
 
+    /**
+     * Closes a ResultSet object if non-null.
+     *
+     * @param result The result set to be closed.
+     */
     public static void closeResultSet(ResultSet result) {
         if (result != null) {
             try {
