@@ -24,7 +24,7 @@ public class UiController {
      *  Initialises scanner - global to object.
      *  Standard constructor
      */
-    public void UiController(){
+    public  UiController(){
         this.scanner = new Scanner(System.in);
     }
 
@@ -33,7 +33,7 @@ public class UiController {
      *  Reads a user-written line from terminal using scanner. Returns it.
      *
      */
-    public String ReadLineFromUser() throws Exception {
+    public String readLineFromUser() throws Exception {
         if(scanner == null){
             throw new Exception("There exists no scanner - you cannot read");
         }
@@ -46,23 +46,23 @@ public class UiController {
 
     // this is all incredibly janky but we don't quite know how it will look yet - all subject to change
 
-    public void AddEmployee(){
+    public void addEmployee(){
 
     }
 
-    public void ViewEmployeeDetails(int id){
+    public void viewEmployeeDetails(int id){
 
     }
 
-    public void UpdateEmployeeDetails(int id){
+    public void updateEmployeeDetails(int id){
 
     }
 
-    public void DeleteEmployeeDetails(int id){
+    public void deleteEmployeeDetails(int id){
 
     }
 
-    public void ListAllEmployees(){
+    public void listAllEmployees(){
 
     }
 
