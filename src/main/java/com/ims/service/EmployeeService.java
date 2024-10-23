@@ -1,4 +1,6 @@
 package com.ims.service;
+import com.ims.utils.IMSRegex;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,8 +19,8 @@ public class EmployeeService {
     private boolean validateSalary(float salary){ return salary > 0; }
 
     private  boolean validateEmail(String email) {
-        String regex = "^(.+)@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
+
+        Pattern pattern = Pattern.compile(IMSRegex.EMAIL_REGEX);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
