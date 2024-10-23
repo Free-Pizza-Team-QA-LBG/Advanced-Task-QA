@@ -1,12 +1,9 @@
 package com.ims.ui;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
 
 
@@ -45,18 +42,14 @@ public class StaticUiController {
         // Add action listener to the button
         buttonAddEmployee.addActionListener(new
 
-            ActionListener() {
-                 @Override
-                 public void actionPerformed(ActionEvent e) {
-                     // Print the text from the text field to the console
-                     System.out.println(textFieldFirstName.getText());
-                     System.out.println(textFieldLastName.getText());
-                     System.out.println(textFieldEmail.getText());
-                     System.out.println(textFieldDepartment.getText());
-                     System.out.println(textFieldSalary.getText());
-                     uiController.handleQuery(textFieldFirstName.getText());
-                 }
-             });
+                                         ActionListener() {
+                                             @Override
+                                             public void actionPerformed(ActionEvent e) {
+                                                 // Print the text from the text field to the console
+                                                 System.out.println(textField.getText());
+                                                 uiController.handleQuery(textField.getText());
+                                             }
+                                         });
 
 
         // Create the BIG RED BUTTON
@@ -74,7 +67,6 @@ public class StaticUiController {
                 System.out.println("Boom");
             }
         });
-
 
 
         // Add components to the frame
