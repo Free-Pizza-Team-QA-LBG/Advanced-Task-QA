@@ -1,5 +1,11 @@
 package com.ims.ui;
+import com.ims.dao.EmployeeDAOImpl;
+import com.ims.model.Employee;
+
 import javax.management.RuntimeErrorException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -25,10 +31,34 @@ import java.util.Scanner;
  */
 
 public class UiController {
+    EmployeeDAOImpl employeeDAO;
+
+    public UiController() {
+        try {
+            employeeDAO = new EmployeeDAOImpl(
+                    DriverManager.getConnection(
+                            "jdbc:mysql://35.197.242.113/ims_db",
+                            "root",
+                            ""
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 
 
-    public void handleQuery(String q){
-        System.out.println("Handling Query: " + q);
+    public void handleQuery(ArrayList<String> parameters){
+        Employee currentEmployee = new Employee(
+                Integer.parseInt(parameters.get(0)),
+                parameters.get(1),
+                parameters.get(2),
+                parameters.get(3),
+                parameters.get(4),
+                Float.parseFloat(parameters.get(5))
+        );
+
+        employeeDAO.createEmployee(currentEmployee);
     }
 
 

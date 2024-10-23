@@ -6,7 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -18,18 +20,23 @@ public class StaticUiController {
         UiController uiController = new UiController();
 
         JFrame frame = new JFrame("DATA MANGLER 9000");
-        frame.setSize(300, 300);
+        frame.setSize(300, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null); // Set layout to null for absolute positioning
 
         // Create a text box
-        JTextField textField = new JTextField();
-        textField.setBounds(50, 30, 200, 30); // Set position and size
+        ArrayList<JTextField> textFieldArray = new ArrayList<>();
+        JTextField textField;
+        for (int i = 0; i < 6; i++) {
+            textField = new JTextField();
+            textField.setBounds(50, 30 + i*40, 200, 30);
+            textFieldArray.add(textField);
+        }
 
 
         // Create a button
         JButton button = new JButton("Print to Console");
-        button.setBounds(75, 70, 150, 30);
+        button.setBounds(75, 310, 150, 30);
 
         // Add action listener to the button
         button.addActionListener(new
@@ -38,8 +45,8 @@ public class StaticUiController {
                  @Override
                  public void actionPerformed(ActionEvent e) {
                      // Print the text from the text field to the console
-                     System.out.println(textField.getText());
-                     uiController.handleQuery(textField.getText());
+                     System.out.println(textFieldArray.get(0).getText());
+                     uiController.handleQuery(textArrayToString(textFieldArray));
                  }
              });
 
@@ -50,7 +57,7 @@ public class StaticUiController {
 
 
         JButton imageButton = new JButton(new ImageIcon(StaticUiController.class.getResource("/missileSwitch.png")));
-        imageButton.setBounds(100, 110, 100, 50); // Set position and size
+        imageButton.setBounds(100, 350, 100, 50); // Set position and size
 
         // Add action listener to the image button (optional)
         imageButton.addActionListener(new ActionListener() {
@@ -63,12 +70,25 @@ public class StaticUiController {
 
 
         // Add components to the frame
-        frame.add(textField);
+        for (int i = 0; i < 6; i++) {
+            frame.add(textFieldArray.get(i));
+        }
         frame.add(button);
         frame.add(imageButton);
 
         // Set frame visibility
         frame.setVisible(true);
+    }
+
+    private static ArrayList<String> textArrayToString(ArrayList<JTextField> textArray) {
+
+        ArrayList<String> stringArray = new ArrayList<>();
+        for (int i = 0; i < textArray.size(); i++) {
+            stringArray.add(textArray.get(i).getText());
+        }
+
+        return stringArray;
+
     }
 }
 
