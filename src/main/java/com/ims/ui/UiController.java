@@ -24,7 +24,7 @@ public class UiController {
      *  Initialises scanner - global to object.
      *  Standard constructor
      */
-    public void UiController(){
+    public  UiController(){
         this.scanner = new Scanner(System.in);
     }
 
