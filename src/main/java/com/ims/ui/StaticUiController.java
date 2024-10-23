@@ -18,28 +18,43 @@ public class StaticUiController {
         UiController uiController = new UiController();
 
         JFrame frame = new JFrame("DATA MANGLER 9000");
-        frame.setSize(300, 300);
+        frame.setSize(300, 450);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null); // Set layout to null for absolute positioning
 
-        // Create a text box
-        JTextField textField = new JTextField();
-        textField.setBounds(50, 30, 200, 30); // Set position and size
+        // Create all text boxes
+        JTextField textFieldFirstName = new JTextField();
+        textFieldFirstName.setBounds(50, 30, 200, 30); // Set position and size
 
+        JTextField textFieldLastName = new JTextField();
+        textFieldLastName.setBounds(50, 70, 200, 30); // Set position and size
 
-        // Create a button
-        JButton button = new JButton("Print to Console");
-        button.setBounds(75, 70, 150, 30);
+        JTextField textFieldEmail = new JTextField();
+        textFieldEmail.setBounds(50, 110, 200, 30); // Set position and size
+
+        JTextField textFieldDepartment = new JTextField();
+        textFieldDepartment.setBounds(50, 150, 200, 30); // Set position and size
+
+        JTextField textFieldSalary = new JTextField();
+        textFieldSalary.setBounds(50, 190, 200, 30); // Set position and size
+
+        // Create a buttons
+        JButton buttonAddEmployee = new JButton("Print to Console");
+        buttonAddEmployee.setBounds(75, 230, 150, 30);
 
         // Add action listener to the button
-        button.addActionListener(new
+        buttonAddEmployee.addActionListener(new
 
             ActionListener() {
                  @Override
                  public void actionPerformed(ActionEvent e) {
                      // Print the text from the text field to the console
-                     System.out.println(textField.getText());
-                     uiController.handleQuery(textField.getText());
+                     System.out.println(textFieldFirstName.getText());
+                     System.out.println(textFieldLastName.getText());
+                     System.out.println(textFieldEmail.getText());
+                     System.out.println(textFieldDepartment.getText());
+                     System.out.println(textFieldSalary.getText());
+                     uiController.handleQuery(textFieldFirstName.getText());
                  }
              });
 
@@ -50,7 +65,7 @@ public class StaticUiController {
 
 
         JButton imageButton = new JButton(new ImageIcon(StaticUiController.class.getResource("/missileSwitch.png")));
-        imageButton.setBounds(100, 110, 100, 50); // Set position and size
+        imageButton.setBounds(100, 280, 100, 50); // Set position and size
 
         // Add action listener to the image button (optional)
         imageButton.addActionListener(new ActionListener() {
@@ -63,8 +78,12 @@ public class StaticUiController {
 
 
         // Add components to the frame
-        frame.add(textField);
-        frame.add(button);
+        frame.add(textFieldFirstName);
+        frame.add(textFieldLastName);
+        frame.add(textFieldEmail);
+        frame.add(textFieldDepartment);
+        frame.add(textFieldSalary);
+        frame.add(buttonAddEmployee);
         frame.add(imageButton);
 
         // Set frame visibility
