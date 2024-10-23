@@ -29,7 +29,7 @@ com.ims/
 ├── model/       # Employee Model class
 ├── service/     # Business Logic
 ├── ui/          # User Interface (Command Line Interface)
-└── test/        # Unit tests using JUnit
+└── test/        # Unit tests using JUnit -- IGNORE THIS LINE
 
 Tasks to Implement:
 
