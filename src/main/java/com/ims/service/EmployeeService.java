@@ -1,8 +1,4 @@
 package com.ims.service;
-<<<<<<< HEAD
-=======
-
->>>>>>> e98c1bcb32b1c2eab21df9ebbfe8ad73003dc06d
 import com.ims.model.Employee;
 import com.ims.utils.IMSRegex;
 
