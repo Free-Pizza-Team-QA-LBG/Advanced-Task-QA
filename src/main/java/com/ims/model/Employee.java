@@ -16,7 +16,12 @@ public class Employee {
     private float salary;
 
     public Employee(int id, String firstName, String lastName, String email, String department, float salary) {
+        this(firstName, lastName, email, department, salary);
         this.id = id;
+    }
+
+    public Employee(String firstName, String lastName, String email, String department, float salary) {
+        this.id = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -32,7 +37,7 @@ public class Employee {
                     Name: %s %s
                     Email: %s
                     Department: %s
-                    Salary: %f
+                    Salary: %.2f
                     """.formatted(id, firstName, lastName, email, department, salary);
     }
 

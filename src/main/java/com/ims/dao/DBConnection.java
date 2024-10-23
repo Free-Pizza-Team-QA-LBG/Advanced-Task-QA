@@ -1,24 +1,60 @@
 package com.ims.dao;
 
-/**
- * @author BenSnellgrove
- * @version 23/10
- *
- * - Implement a class DBConnection in dao package:
- *         - Establish a connection to the SQL database.
- *         - Ensure safe connection closure using try-with-resources or manual cleanup.
- */
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+
 public class DBConnection {
+    private static Connection conn = null;
 
-    String url;
+    public static Connection getConnection() {
+        if (conn == null) {
+            try {
+                Properties dbProperties = getProperties();
+                String dbUrl = dbProperties.getProperty("url");
+                conn = DriverManager.getConnection(dbUrl, dbProperties);
+            } catch (SQLException e) {
+                // TODO: Handle error
+                System.out.println("error: " + e.getMessage());
+            }
+        }
 
-    public DBConnection(String url) {
-
+        return conn;
     }
 
+    private static Properties getProperties() {
+        try (FileInputStream stream = new FileInputStream("database.properties")) {
+            Properties properties = new Properties();
+            properties.load(stream);
+            return properties;
+        } catch (IOException e) {
+            // TODO: Handle error
+            System.out.println("error: " + e.getMessage());
+        }
 
+        return null;
+    }
 
+    public static void closeStatement(Statement stmt) {
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                // TODO: Handle error
+                System.out.println("error: " + e.getMessage());
+            }
+        }
+    }
 
-
-
+    public static void closeResultSet(ResultSet result) {
+        if (result != null) {
+            try {
+                result.close();
+            } catch (SQLException e) {
+                // TODO: Handle error
+                System.out.println("error: " + e.getMessage());
+            }
+        }
+    }
 }
