@@ -18,51 +18,31 @@ import java.util.Scanner;
 
 public class UiController {
 
-    private Scanner scanner;
 
-    /**
-     *  Initialises scanner - global to object.
-     *  Standard constructor
-     */
-    public  UiController(){
-        this.scanner = new Scanner(System.in);
-    }
-
-
-    /**
-     *  Reads a user-written line from terminal using scanner. Returns it.
-     *
-     */
-    public String readLineFromUser() throws Exception {
-        if(scanner == null){
-            throw new Exception("There exists no scanner - you cannot read");
-        }
-
-        System.out.println("oi m8 whots u wont to do?");
-        String userInputString = scanner.nextLine();
-        return userInputString;
+    public void handleQuery(String q){
+        System.out.println("Handling Query: " + q);
     }
 
 
     // this is all incredibly janky but we don't quite know how it will look yet - all subject to change
 
-    public void addEmployee(){
+    void addEmployee(){
 
     }
 
-    public void viewEmployeeDetails(int id){
+    void viewEmployeeDetails(int id){
 
     }
 
-    public void updateEmployeeDetails(int id){
+    void updateEmployeeDetails(int id){
 
     }
 
-    public void deleteEmployeeDetails(int id){
+    void deleteEmployeeDetails(int id){
 
     }
 
-    public void listAllEmployees(){
+    void listAllEmployees(){
 
     }
 
