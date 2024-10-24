@@ -4,6 +4,13 @@
 If dead refer to `task_spec.txt`
 
 
+## Java
+
+This is a **JAVA 17** project. \
+Please do not attempt to use Java 23 or above \
+Mockito **will not like it**
+
+
 ## Useful commands
 
 ```shell
