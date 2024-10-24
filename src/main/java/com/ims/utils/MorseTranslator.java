@@ -2,12 +2,17 @@ package com.ims.utils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MorseTranslator {
 
     private final Map<String, String> MORSE_MAP;
+    private final Map<String, String> REVERSE_MAP;
+    Pattern morsePattern;
+    Matcher matcher;
 
     public MorseTranslator() {
         this.MORSE_MAP = new HashMap<>();
@@ -40,14 +45,28 @@ public class MorseTranslator {
         this.MORSE_MAP.put("", "y");
         this.MORSE_MAP.put("--..", "z");
         this.MORSE_MAP.put("/", " ");
+
+        this.REVERSE_MAP = new HashMap<>();
+        for (String key : this.MORSE_MAP.keySet()) {
+            this.REVERSE_MAP.put(this.MORSE_MAP.get(key), key);
+        }
+
+        morsePattern = Pattern.compile(IMSRegex.MORSE_REGEX);
     }
 
 
     public String translate(String input) {
+        matcher = morsePattern.matcher(input);
 
-        return Stream.of(input.split(" "))
-                .map(MORSE_MAP::get)
-                .collect(Collectors.joining());
+        if (matcher.matches()) {
+            return Stream.of(input.split(""))
+                    .map(REVERSE_MAP::get)
+                    .collect(Collectors.joining(" "));
+        } else {
+            return Stream.of(input.split(" "))
+                    .map(MORSE_MAP::get)
+                    .collect(Collectors.joining());
+        }
     }
 
 
