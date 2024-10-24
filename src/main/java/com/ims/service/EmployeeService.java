@@ -1,7 +1,10 @@
 package com.ims.service;
+import com.ims.dao.DBConnection;
+import com.ims.dao.EmployeeDAO;
 import com.ims.model.Employee;
 import com.ims.utils.IMSRegex;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,24 +23,24 @@ public class EmployeeService {
         return name.replaceAll("\\s", "");
     }
 
-    private boolean validateSalary(float salary) {
+    private static boolean validateSalary(float salary) {
         // Database column is DECIMAL(10,2), so 11 digit salaries are illegal
         return salary > 0 && salary < 10000000000L;
     }
 
-    private boolean validateEmail(String email) {
+    private static boolean validateEmail(String email) {
 
         Pattern pattern = Pattern.compile(IMSRegex.EMAIL_REGEX);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
 
-    public boolean validateEmployee(int id, String firstName, String lastName, String email, String department, float salary) {
-        return this.validateSalary(salary) && this.validateEmail(email);
+    private static boolean validateEmployee(int id, String firstName, String lastName, String email, String department, float salary) {
+        return EmployeeService.validateSalary(salary) && EmployeeService.validateEmail(email);
     }
 
-    public boolean validateEmployee(Employee employee) {
-        return this.validateEmployee(
+    private static boolean validateEmployee(Employee employee) {
+        return EmployeeService.validateEmployee(
                 employee.getId(),
                 employee.getFirstName(),
                 employee.getLastName(),
@@ -45,5 +48,70 @@ public class EmployeeService {
                 employee.getDepartment(),
                 employee.getSalary()
         );
+    }
+
+    public static boolean addAndValidateEmployee(Employee employee) {
+
+        boolean isValid = validateEmployee(employee);
+
+        if (isValid) {
+            Connection conn = DBConnection.getConnection();
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
+        }
+
+        return isValid;
+    }
+
+    public static boolean updateAndValidateEmployee(Employee employee) {
+
+        boolean isValid = validateEmployee(employee);
+
+        if (isValid) {
+            Connection conn = DBConnection.getConnection();
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
+        }
+
+        return isValid;
+    }
+
+    public static boolean deleteAndValidateEmployee(Employee employee) {
+
+        boolean isValid = validateEmployee(employee);
+
+        if (isValid) {
+            Connection conn = DBConnection.getConnection();
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
+        }
+
+        return isValid;
+    }
+
+    public static boolean viewAndValidateEmployee(Employee employee) {
+
+        boolean isValid = validateEmployee(employee);
+
+        if (isValid) {
+            Connection conn = DBConnection.getConnection();
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
+        }
+
+        return isValid;
+    }
+
+    public static boolean listAllAndValidateEmployee(Employee employee) {
+
+        boolean isValid = validateEmployee(employee);
+
+        if (isValid) {
+            Connection conn = DBConnection.getConnection();
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
+        }
+
+        return isValid;
     }
 }

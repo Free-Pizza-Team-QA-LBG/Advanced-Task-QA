@@ -105,7 +105,7 @@ public class MorseTranslator {
 
         String buffer = "";
         for (int i = 0; i < code.length(); i++) {
-            System.out.println(buffer);
+
 
             char c = code.charAt(i);
 
@@ -115,7 +115,6 @@ public class MorseTranslator {
 
                 if (MORSE_MAP.containsKey(buffer)) {
                     result = result.concat(MORSE_MAP.get(buffer));
-                    System.out.println(buffer);
                     buffer = "";
                 }
             }
@@ -125,7 +124,6 @@ public class MorseTranslator {
             if(i == code.length()-1){
                 if (MORSE_MAP.containsKey(buffer)) {
                     result = result.concat(MORSE_MAP.get(buffer));
-                    System.out.println(buffer);
                     buffer = "";
                 }
             }
@@ -138,17 +136,18 @@ public class MorseTranslator {
 
     @Deprecated
 
-    String reverseHashInnefficient(Map<String, String> hashmap, String inpChar) throws Exception {
+    String reverseHashInnefficient(Map<String, String> hashmap, String inpChar)  {
 
 
 
         for (Map.Entry<String, String> entry : hashmap.entrySet()) {
-            System.out.println(entry.getKey() + "/" + entry.getValue());
             if(entry.getValue().equals(inpChar)){
                 return entry.getKey() + " ";
             }
         }
-        throw new Exception("invalid character");
+
+        return "";
+
     }
 
 
