@@ -79,12 +79,11 @@ public class UiController {
     // this is all incredibly janky but we don't quite know how it will look yet - all subject to change
 
     void addEmployee(String[] args) {
-        System.out.println("Adding employee");
         //Employee employee new Employee();
         Employee employeeToAdd = new Employee(args[1], args[2], args[3], args[4], Integer.valueOf(args[5]));
         System.out.println(employeeToAdd);
         boolean isValidAndAdded = EmployeeService.addAndValidateEmployee(employeeToAdd);
-
+        System.out.println((isValidAndAdded) ? "Adding employee":"Error did not add!");
     }
 
     void viewEmployeeDetails(int id) {
