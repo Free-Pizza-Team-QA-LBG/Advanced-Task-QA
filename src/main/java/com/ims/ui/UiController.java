@@ -1,5 +1,7 @@
 package com.ims.ui;
 
+import com.ims.model.Employee;
+
 import java.util.Arrays;
 
 
@@ -72,8 +74,8 @@ public class UiController {
     // this is all incredibly janky but we don't quite know how it will look yet - all subject to change
 
     void addEmployee(String[] args) {
-        System.out.println("Adding employee");
-
+        System.out.println("Adding employee" + args[0] + args[1]);
+        //Employee employee new Employee();
     }
 
     void viewEmployeeDetails(int id) {
