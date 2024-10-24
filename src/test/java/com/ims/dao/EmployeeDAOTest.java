@@ -57,7 +57,7 @@ public class EmployeeDAOTest {
         when(result.getFloat("salary")).thenReturn(employee.getSalary());
         when(stmt.executeQuery()).thenReturn(result);
 
-        Employee foundEmployee = new EmployeeDAOImpl(conn).readEmployee(1);
+        Employee foundEmployee = new EmployeeDAO(conn).read(1);
 
         assertEquals(foundEmployee.getId(), employee.getId());
         assertEquals(foundEmployee.getFirstName(), employee.getFirstName());

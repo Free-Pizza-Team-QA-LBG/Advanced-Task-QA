@@ -74,7 +74,7 @@ public class UiController {
     // this is all incredibly janky but we don't quite know how it will look yet - all subject to change
 
     void addEmployee(String[] args) {
-        System.out.println("Adding employee" + args[0] + args[1]);
+        System.out.println("Adding employee");
         //Employee employee new Employee();
     }
 
