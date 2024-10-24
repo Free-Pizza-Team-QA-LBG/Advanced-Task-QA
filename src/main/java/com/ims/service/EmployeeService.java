@@ -76,42 +76,17 @@ public class EmployeeService {
         return isValid;
     }
 
-    public static boolean deleteAndValidateEmployee(Employee employee) {
+    public static boolean deleteAndValidateEmployee(int id) {
 
-        boolean isValid = validateEmployee(employee);
-
-        if (isValid) {
-            Connection conn = DBConnection.getConnection();
-            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
-            newEmployeeDAOImpl.create(employee);
-        }
-
-        return isValid;
+        return true;
     }
 
-    public static boolean viewAndValidateEmployee(Employee employee) {
+    public static boolean viewAndValidateEmployee(int id) {
 
-        boolean isValid = validateEmployee(employee);
-
-        if (isValid) {
-            Connection conn = DBConnection.getConnection();
-            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
-            newEmployeeDAOImpl.create(employee);
-        }
-
-        return isValid;
+        return true;
     }
 
-    public static boolean listAllAndValidateEmployee(Employee employee) {
-
-        boolean isValid = validateEmployee(employee);
-
-        if (isValid) {
-            Connection conn = DBConnection.getConnection();
-            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
-            newEmployeeDAOImpl.create(employee);
-        }
-
-        return isValid;
+    public static boolean listAllAndValidateEmployee() {
+        return true;
     }
 }
