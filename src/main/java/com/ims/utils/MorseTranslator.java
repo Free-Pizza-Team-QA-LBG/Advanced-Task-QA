@@ -1,5 +1,8 @@
 package com.ims.utils;
 
+import com.ims.main.Main;
+import org.mockito.internal.stubbing.answers.ThrowsException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,12 +54,43 @@ public class MorseTranslator {
 
     }
 
+    @Deprecated
+
+    String reverseHashInnefficient(Map<String, String> hashmap, String inpChar) throws Exception {
+
+
+
+        for (Map.Entry<String, String> entry : hashmap.entrySet()) {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+            if(entry.getValue().equals(inpChar)){
+                return entry.getKey() + " ";
+            }
+        }
+        throw new Exception("invalid character");
+    }
+
+
+    @Deprecated
+    public String translateBackwardsInnefficient(String input) throws Exception {
+        String result = "";
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            String morse = reverseHashInnefficient(MORSE_MAP, String.valueOf(c));
+            result = result.concat(morse);
+        }
+
+        return result;
+
+
+    }
+
 
     public String noStreamTranslate(String input) {
         return "";
 
     }
 
+    @Deprecated
     public String jankyTranslate(String code){
 
 
