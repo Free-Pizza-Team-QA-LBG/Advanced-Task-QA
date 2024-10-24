@@ -11,11 +11,13 @@ import static org.junit.Assert.*;
 public class IMSRegexTest {
 
     Pattern emailPattern;
+    Pattern morsePattern;
     Matcher matcher;
 
     @Before
     public void before() {
         emailPattern = Pattern.compile(IMSRegex.EMAIL_REGEX);
+        morsePattern = Pattern.compile(IMSRegex.MORSE_REGEX);
     }
 
     @Test
@@ -41,6 +43,22 @@ public class IMSRegexTest {
         assertTrue(matcher.matches());
         matcher = emailPattern.matcher("test@company-name.uk");
         assertTrue(matcher.matches());
+
+    }
+
+
+    @Test
+    public void morseMatchNormal() {
+
+        matcher = morsePattern.matcher("...          --- ..         .");
+        assertTrue(matcher.matches());
+
+        matcher = morsePattern.matcher(".--- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-");
+        assertTrue(matcher.matches());
+
+        matcher = morsePattern.matcher(".---- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-");
+        assertFalse(matcher.matches());
+
 
     }
 
