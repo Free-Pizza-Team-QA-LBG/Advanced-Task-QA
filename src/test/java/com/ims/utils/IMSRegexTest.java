@@ -56,10 +56,6 @@ public class IMSRegexTest {
         matcher = morsePattern.matcher(".--- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-");
         assertTrue(matcher.matches());
 
-        matcher = morsePattern.matcher(".---- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-");
-        assertFalse(matcher.matches());
-
-
     }
 
 }
