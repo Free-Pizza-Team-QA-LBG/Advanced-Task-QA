@@ -1,12 +1,15 @@
 package com.ims.utils;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class MorseTranslator {
-/*
-
-            MorseTrout.println(translator.noStreamTranslate(".--- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-"));
 
 
-    public class MorseTranslator {
+
 
         private final Map<String, String> MORSE_MAP;
 
@@ -43,10 +46,12 @@ public class MorseTranslator {
             this.MORSE_MAP.put("/", " ");
         }
 
-*/
 
     public String translate(String input) {
-        return "";
+
+        return Stream.of(
+                input.split(" ")).map(MORSE_MAP::get).collect(Collectors.joining()
+        );
     }
 
 
