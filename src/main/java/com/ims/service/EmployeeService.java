@@ -1,6 +1,6 @@
 package com.ims.service;
 import com.ims.dao.DBConnection;
-import com.ims.dao.EmployeeDAOImpl;
+import com.ims.dao.EmployeeDAO;
 import com.ims.model.Employee;
 import com.ims.utils.IMSRegex;
 
@@ -56,8 +56,8 @@ public class EmployeeService {
 
         if (isValid) {
             Connection conn = DBConnection.getConnection();
-            EmployeeDAOImpl newEmployeeDAOImpl = new EmployeeDAOImpl(conn);
-            newEmployeeDAOImpl.createEmployee(employee);
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
         }
 
         return isValid;
@@ -69,8 +69,8 @@ public class EmployeeService {
 
         if (isValid) {
             Connection conn = DBConnection.getConnection();
-            EmployeeDAOImpl newEmployeeDAOImpl = new EmployeeDAOImpl(conn);
-            newEmployeeDAOImpl.createEmployee(employee);
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
         }
 
         return isValid;
