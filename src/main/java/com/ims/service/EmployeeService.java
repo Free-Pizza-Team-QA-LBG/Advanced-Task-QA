@@ -35,11 +35,11 @@ public class EmployeeService {
         return matcher.matches();
     }
 
-    public static boolean validateEmployee(int id, String firstName, String lastName, String email, String department, float salary) {
+    private static boolean validateEmployee(int id, String firstName, String lastName, String email, String department, float salary) {
         return EmployeeService.validateSalary(salary) && EmployeeService.validateEmail(email);
     }
 
-    public static boolean validateEmployee(Employee employee) {
+    private static boolean validateEmployee(Employee employee) {
         return EmployeeService.validateEmployee(
                 employee.getId(),
                 employee.getFirstName(),
@@ -64,6 +64,45 @@ public class EmployeeService {
     }
 
     public static boolean updateAndValidateEmployee(Employee employee) {
+
+        boolean isValid = validateEmployee(employee);
+
+        if (isValid) {
+            Connection conn = DBConnection.getConnection();
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
+        }
+
+        return isValid;
+    }
+
+    public static boolean deleteAndValidateEmployee(Employee employee) {
+
+        boolean isValid = validateEmployee(employee);
+
+        if (isValid) {
+            Connection conn = DBConnection.getConnection();
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
+        }
+
+        return isValid;
+    }
+
+    public static boolean viewAndValidateEmployee(Employee employee) {
+
+        boolean isValid = validateEmployee(employee);
+
+        if (isValid) {
+            Connection conn = DBConnection.getConnection();
+            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
+            newEmployeeDAOImpl.create(employee);
+        }
+
+        return isValid;
+    }
+
+    public static boolean listAllAndValidateEmployee(Employee employee) {
 
         boolean isValid = validateEmployee(employee);
 
