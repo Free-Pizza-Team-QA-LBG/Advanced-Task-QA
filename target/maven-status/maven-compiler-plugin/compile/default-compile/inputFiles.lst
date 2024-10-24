@@ -1,4 +1,10 @@
-C:\Users\Admin\QA\QA-Exercise-Hard\Advanced-Task-QA\src\main\java\com\ims\model\Employee.java
-C:\Users\Admin\QA\QA-Exercise-Hard\Advanced-Task-QA\src\main\java\com\ims\service\EmployeeService.java
-C:\Users\Admin\QA\QA-Exercise-Hard\Advanced-Task-QA\src\main\java\com\ims\dao\DBConnection.java
-C:\Users\Admin\QA\QA-Exercise-Hard\Advanced-Task-QA\src\main\java\com\ims\ui\UiController.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\dao\DAO.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\ui\UiController.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\main\Main.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\utils\MorseTranslator.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\dao\DBConnection.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\ui\StaticUiController.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\utils\IMSRegex.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\service\EmployeeService.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\dao\EmployeeDAO.java
+C:\Users\Admin\repos\Advanced-Task-QA\src\main\java\com\ims\model\Employee.java

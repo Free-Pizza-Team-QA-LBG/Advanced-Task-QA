@@ -3,6 +3,7 @@ package com.ims.utils;
 import com.ims.main.Main;
 import org.mockito.internal.stubbing.answers.ThrowsException;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -60,15 +61,14 @@ public class MorseTranslator {
 
     public String translate(String input) {
         matcher = morsePattern.matcher(input);
-
         if (matcher.matches()) {
-            return Stream.of(input.split(""))
-                    .map(REVERSE_MAP::get)
-                    .collect(Collectors.joining(" "));
-        } else {
             return Stream.of(input.split(" "))
                     .map(MORSE_MAP::get)
                     .collect(Collectors.joining());
+        } else {
+            return Arrays.stream(input.split(""))
+                    .map(REVERSE_MAP::get)
+                    .collect(Collectors.joining(" "));
         }
     }
 
