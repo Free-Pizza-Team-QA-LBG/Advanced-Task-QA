@@ -2,6 +2,7 @@ package com.ims.ui;
 
 import com.ims.dao.DBConnection;
 import com.ims.model.Employee;
+import com.ims.dao.EmployeeDAO;
 import com.ims.service.EmployeeService;
 
 

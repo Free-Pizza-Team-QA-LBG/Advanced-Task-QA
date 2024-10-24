@@ -20,19 +20,39 @@ public class MorseTranslatorTest {
     @Test
     public void morseTestStream() {
 
+        System.out.println("==================");
+        System.out.println("morseTestStream");
+        System.out.println(morseTranslator.translate("... --- ..."));
         assertTrue(
                 morseTranslator.translate("... --- ...").equalsIgnoreCase(
-                        "SOS"
+                        "sos"
+                )
+        );
+
+
+
+    }
+
+    @Test
+    public void morseTestStreamInefficient() throws Exception {
+
+
+        assertTrue(
+                morseTranslator.jankyTranslate("... --- ...").equalsIgnoreCase(
+                        "sos"
                 )
         );
 
         assertTrue(
-                morseTranslator.translate(".--- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-").equalsIgnoreCase(
-                        "Java is cool ok"
+                morseTranslator.translateBackwardsInnefficient("hello").equals(
+                        ".... . .-.. .-.. ---"
                 )
         );
 
     }
+
+
+
 
     @Test
     public void morseTestReverse() {
@@ -70,3 +90,6 @@ public class MorseTranslatorTest {
     }
 
 }
+
+
+
