@@ -21,6 +21,12 @@ public class MorseTranslatorTest {
     public void morseTestStream() {
 
         assertTrue(
+                morseTranslator.translate("... --- ...").equalsIgnoreCase(
+                        "SOS"
+                )
+        );
+
+        assertTrue(
                 morseTranslator.translate(".--- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-").equalsIgnoreCase(
                         "Java is cool ok"
                 )
@@ -32,7 +38,11 @@ public class MorseTranslatorTest {
     @Test
     public void morseTestNoStream() {
 
-
+        assertTrue(
+                morseTranslator.noStreamTranslate("... --- ...").equalsIgnoreCase(
+                        "SOS"
+                )
+        );
 
         assertTrue(
                 morseTranslator.noStreamTranslate(".--- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-").equalsIgnoreCase(
