@@ -45,4 +45,14 @@ public class MorseTranslator {
 
 */
 
+    public String translate(String input) {
+        return "";
+    }
+
+
+    public String noStreamTranslate(String input) {
+        return "";
+
+    }
+
 }
