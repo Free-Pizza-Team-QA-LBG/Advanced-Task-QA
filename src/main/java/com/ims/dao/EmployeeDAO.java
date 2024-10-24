@@ -2,45 +2,188 @@ package com.ims.dao;
 
 import com.ims.model.Employee;
 
+import java.sql.*;
 import java.util.ArrayList;
 
-public interface EmployeeDAO {
-    /**
-     * Creates a new employee in the database.
-     *
-     * @param employee The Employee object containing the data to be stored in the database
-     * @return A boolean indicating whether the operation was successful
-     */
-    boolean createEmployee(Employee employee);
+public class EmployeeDAO implements DAO<Employee> {
+    private final Connection connection;
 
-    /**
-     * Reads an employee from the database.
-     *
-     * @param id The ID of the employee to be read
-     * @return The created Employee object
-     */
-    Employee readEmployee(int id);
+    public EmployeeDAO(Connection connection) {
+        this.connection = connection;
+    }
 
-    /**
-     * Updates an employee in the database. The ID of the employee must exist in the database.
-     *
-     * @param employee The Employee object containing the data to be updated
-     * @return A boolean indicating whether the operation was successful
-     */
-    boolean updateEmployee(Employee employee);
+    @Override
+    public boolean create(Employee employee) {
+        PreparedStatement stmt = null;
 
-    /**
-     * Deletes an employee from the database. The ID of the employee must exist in the database.
-     *
-     * @param id The Employee object containing the data to be deleted
-     * @return A boolean indicating whether the operation was successful
-     */
-    boolean deleteEmployee(int id);
+        try {
+            stmt = connection.prepareStatement(
+                    "INSERT INTO employees VALUES (?, ?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS
+            );
 
-    /**
-     * Reads all employees from the database.
-     *
-     * @return An ArrayList containing all employee objects
-     */
-    ArrayList<Employee> getAllEmployees();
+            int employeeId = employee.getId();
+            if (employeeId > 0) {
+                stmt.setInt(1, employeeId);
+            } else {
+                stmt.setNull(1, Types.NULL);
+            }
+
+            stmt.setString(2, employee.getFirstName());
+            stmt.setString(3, employee.getLastName());
+            stmt.setString(4, employee.getEmail());
+            stmt.setString(5, employee.getDepartment());
+            stmt.setFloat(6, employee.getSalary());
+
+            int insertedRowsCount = stmt.executeUpdate();
+
+            if (insertedRowsCount > 0) {
+                // Row was inserted, get auto increment ID value
+                ResultSet result = stmt.getGeneratedKeys();
+
+                if (result.next()) {
+                    // Set ID on Employee instance to match inserted row
+                    int id = result.getInt(1);
+                    employee.setId(id);
+                }
+
+                DBConnection.closeResultSet(result);
+
+                return true;
+            }
+        } catch (SQLException e) {
+            // TODO: Handle error
+            System.out.println("error: " + e.getMessage());
+        } finally {
+            DBConnection.closeStatement(stmt);
+        }
+
+        return false;
+    }
+
+    @Override
+    public Employee read(int id) {
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+
+        try {
+            stmt = connection.prepareStatement(
+                "SELECT * FROM employees WHERE id = ?"
+            );
+
+            stmt.setInt(1, id);
+
+            result = stmt.executeQuery();
+
+            if (result.next()) {
+                return new Employee(
+                    result.getInt("id"),
+                    result.getString("first_name"),
+                    result.getString("last_name"),
+                    result.getString("email"),
+                    result.getString("department"),
+                    result.getFloat("salary")
+                );
+            }
+        } catch (SQLException e) {
+            // TODO: Handle error
+            System.out.println("error: " + e.getMessage());
+        } finally {
+            DBConnection.closeStatement(stmt);
+            DBConnection.closeResultSet(result);
+        }
+
+        return null;
+    }
+
+    @Override
+    public boolean update(Employee employee) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = connection.prepareStatement(
+                    "UPDATE employees SET first_name = ?, last_name = ?, email = ?, department = ?, salary = ? WHERE id = ?"
+            );
+
+            stmt.setString(1, employee.getFirstName());
+            stmt.setString(2, employee.getLastName());
+            stmt.setString(3, employee.getEmail());
+            stmt.setString(4, employee.getDepartment());
+            stmt.setFloat(5, employee.getSalary());
+            stmt.setInt(6, employee.getId());
+
+            int updatedRowsCount = stmt.executeUpdate();
+
+            return updatedRowsCount > 0;
+        } catch (SQLException e) {
+            // TODO: Handle error
+            System.out.println("error: " + e.getMessage());
+        } finally {
+            DBConnection.closeStatement(stmt);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = connection.prepareStatement(
+                    "DELETE FROM employees WHERE id = ?"
+            );
+
+            stmt.setInt(1, id);
+
+            int deletedRowsCount = stmt.executeUpdate();
+
+            return deletedRowsCount > 0;
+        } catch (SQLException e) {
+            // TODO: Handle error
+            System.out.println("error: " + e.getMessage());
+        } finally {
+            DBConnection.closeStatement(stmt);
+        }
+
+        return false;
+    }
+
+    @Override
+    public ArrayList<Employee> getAll() {
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+        ArrayList<Employee> employees = new ArrayList<>();
+
+        try {
+            stmt = connection.prepareStatement(
+                    "SELECT * FROM employees"
+            );
+
+            result = stmt.executeQuery();
+
+            while (result.next()) {
+                employees.add(
+                    new Employee(
+                            result.getInt("id"),
+                            result.getString("first_name"),
+                            result.getString("last_name"),
+                            result.getString("email"),
+                            result.getString("department"),
+                            result.getFloat("salary")
+                    )
+                );
+            }
+        } catch (SQLException e) {
+            // TODO: Handle error
+            System.out.println("error: " + e.getMessage());
+
+            return null;
+        } finally {
+            DBConnection.closeStatement(stmt);
+            DBConnection.closeResultSet(result);
+        }
+
+        return employees;
+    }
 }
