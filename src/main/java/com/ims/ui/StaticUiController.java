@@ -82,6 +82,7 @@ public class StaticUiController {
                  // Print the text from the text field to the console
                  System.out.println(textFieldFirstName.getText());
                  uiController.handleQuery("add " +
+                         textFieldID.getText() + " " +
                          textFieldFirstName.getText() + " " +
                          textFieldLastName.getText() + " " +
                          textFieldEmail.getText() + " " +

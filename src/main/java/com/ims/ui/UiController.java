@@ -1,7 +1,12 @@
 package com.ims.ui;
 
+import com.ims.dao.DBConnection;
 import com.ims.model.Employee;
+import com.ims.dao.EmployeeDAOImpl;
+import com.ims.service.EmployeeService;
 
+
+import java.sql.Connection;
 import java.util.Arrays;
 
 
@@ -41,7 +46,7 @@ public class UiController {
         switch (args[0]) {
 
             case "add": case "create": case "new":
-                addEmployee(Arrays.copyOfRange(args, 1, args.length - 1));
+                addEmployee(Arrays.copyOfRange(args, 1, args.length));
                 break;
 
             case "view": case "get": case "see":
@@ -76,6 +81,10 @@ public class UiController {
     void addEmployee(String[] args) {
         System.out.println("Adding employee");
         //Employee employee new Employee();
+        Employee employeeToAdd = new Employee(args[1], args[2], args[3], args[4], Integer.valueOf(args[5]));
+        System.out.println(employeeToAdd);
+        boolean isValidAndAdded = EmployeeService.addAndValidateEmployee(employeeToAdd);
+
     }
 
     void viewEmployeeDetails(int id) {
