@@ -53,8 +53,12 @@ public class MorseTranslator {
 
 
     public String noStreamTranslate(String input) {
-        return "";
+        StringBuilder output = new StringBuilder();
 
+        for (String word: input.split(" ")) {
+            output.append(MORSE_MAP.get(word));
+        }
+        return output.toString();
     }
 
     public String jankyTranslate(String code){
