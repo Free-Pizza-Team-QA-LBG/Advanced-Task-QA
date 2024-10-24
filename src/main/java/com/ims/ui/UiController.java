@@ -6,7 +6,9 @@ import com.ims.dao.EmployeeDAO;
 import com.ims.service.EmployeeService;
 
 
+import javax.sound.midi.Soundbank;
 import java.sql.Connection;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 
@@ -83,27 +85,33 @@ public class UiController {
         Employee employeeToAdd = new Employee(args[1], args[2], args[3], args[4], Integer.valueOf(args[5]));
         System.out.println(employeeToAdd);
         boolean isValidAndAdded = EmployeeService.addAndValidateEmployee(employeeToAdd);
-        System.out.println((isValidAndAdded) ? "Adding employee":"Error did not add!");
+        System.out.println((isValidAndAdded) ? "Adding employee" : "Error did not add!");
     }
 
     void viewEmployeeDetails(int id) {
         System.out.println("Viewing employee");
+        System.out.println(EmployeeService.viewAndValidateEmployee(id));
 
     }
 
     void updateEmployeeDetails(int id, String[] args) {
         System.out.println("Updating employee");
+        Employee employeeToUpdate = new Employee(id, args[1], args[2], args[3], args[4], Integer.valueOf(args[5]));
+        System.out.println(employeeToUpdate);
+        boolean isValidAndUpdated = EmployeeService.updateAndValidateEmployee(employeeToUpdate);
+        System.out.println((isValidAndUpdated) ? "Updating employee" : "Error could not be updated");
 
     }
 
     void deleteEmployeeDetails(int id) {
-        System.out.println("Deleting employee");
-
+        System.out.println("Deleting employee with id " + id);
+        boolean isValidAndDeleted = EmployeeService.deleteAndValidateEmployee(id);
+        System.out.println((isValidAndDeleted) ? "Deleting employee" : "Error could not be updated");
     }
 
     void listAllEmployees() {
         System.out.println("Listing employees");
-
+        System.out.println(EmployeeService.listAllAndValidateEmployee());
     }
 
 
