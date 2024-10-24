@@ -57,4 +57,42 @@ public class MorseTranslator {
 
     }
 
+    public String jankyTranslate(String code){
+
+
+        String result = "";
+
+        String buffer = "";
+        for (int i = 0; i < code.length(); i++) {
+            System.out.println(buffer);
+
+            char c = code.charAt(i);
+
+            if(c != ' ' )buffer = buffer.concat(String.valueOf(c));
+            else {
+
+
+                if (MORSE_MAP.containsKey(buffer)) {
+                    result = result.concat(MORSE_MAP.get(buffer));
+                    System.out.println(buffer);
+                    buffer = "";
+                }
+            }
+
+
+            // final end case
+            if(i == code.length()-1){
+                if (MORSE_MAP.containsKey(buffer)) {
+                    result = result.concat(MORSE_MAP.get(buffer));
+                    System.out.println(buffer);
+                    buffer = "";
+                }
+            }
+
+        }
+        return result;
+
+
+    }
+
 }
