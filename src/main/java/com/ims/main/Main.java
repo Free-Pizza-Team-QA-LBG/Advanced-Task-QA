@@ -19,7 +19,7 @@ public class Main {
         System.out.println( mt.translate("hello"));
         System.out.println("==============================================");
         */
-         
+
 
         StaticUiController.InitialiseUI();
 
