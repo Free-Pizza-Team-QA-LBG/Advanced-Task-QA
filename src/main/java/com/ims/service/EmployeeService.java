@@ -69,8 +69,8 @@ public class EmployeeService {
 
         if (isValid) {
             Connection conn = DBConnection.getConnection();
-            EmployeeDAO newEmployeeDAOImpl = new EmployeeDAO(conn);
-            newEmployeeDAOImpl.create(employee);
+            EmployeeDAO updateEmployeeDAOImpl = new EmployeeDAO(conn);
+            updateEmployeeDAOImpl.update(employee);
         }
 
         return isValid;
@@ -78,15 +78,29 @@ public class EmployeeService {
 
     public static boolean deleteAndValidateEmployee(int id) {
 
+        Connection conn = DBConnection.getConnection();
+        EmployeeDAO deleteEmployeeDAOImpl = new EmployeeDAO(conn);
+        deleteEmployeeDAOImpl.delete(id);
+
         return true;
     }
 
-    public static boolean viewAndValidateEmployee(int id) {
+    public static Employee viewAndValidateEmployee(int id) {
 
-        return true;
+        Connection conn = DBConnection.getConnection();
+        EmployeeDAO viewEmployeeDAOImpl = new EmployeeDAO(conn);
+        Employee employee = viewEmployeeDAOImpl.read(id);
+
+        return employee;
     }
 
-    public static boolean listAllAndValidateEmployee() {
-        return true;
+    public static ArrayList<Employee> listAllAndValidateEmployee() {
+        //return true;
+
+        Connection conn = DBConnection.getConnection();
+        EmployeeDAO viewAllEmployeeDAOImpl = new EmployeeDAO(conn);
+        ArrayList<Employee> employees = viewAllEmployeeDAOImpl.getAll();
+
+        return employees;
     }
 }
