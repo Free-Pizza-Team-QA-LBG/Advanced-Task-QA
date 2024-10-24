@@ -45,10 +45,9 @@ public class MorseTranslator {
 
     public String translate(String input) {
 
-        return Stream.of(
-                input.split(" ")).map(MORSE_MAP::get).collect(Collectors.joining()
-        );
-
+        return Stream.of(input.split(" "))
+                .map(MORSE_MAP::get)
+                .collect(Collectors.joining());
     }
 
 
