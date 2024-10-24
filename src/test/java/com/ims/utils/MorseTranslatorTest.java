@@ -34,6 +34,22 @@ public class MorseTranslatorTest {
 
     }
 
+    @Test
+    public void morseTestReverse() {
+
+        assertTrue(
+                morseTranslator.translate("SOS").equalsIgnoreCase(
+                        "... --- ..."
+                )
+        );
+
+        assertTrue(
+                morseTranslator.translate("Java is cool ok").equalsIgnoreCase(
+                        ".--- .- ...- .- / .. ... / -.-. --- --- .-.. / --- -.-"
+                )
+        );
+
+    }
 
     @Test
     public void morseTestNoStream() {
