@@ -40,16 +40,26 @@ public class StaticUiController {
         buttonAddEmployee.setBounds(75, 230, 150, 30);
 
         // Add action listener to the button
-        buttonAddEmployee.addActionListener(new
+        buttonAddEmployee.addActionListener(new ActionListener() {
+            @Override
+             public void actionPerformed(ActionEvent e) {
+                 // Print the text from the text field to the console
+                 System.out.println(textFieldFirstName.getText());
+                 uiController.handleQuery(textFieldFirstName.getText());
 
-                                         ActionListener() {
-                                             @Override
-                                             public void actionPerformed(ActionEvent e) {
-                                                 // Print the text from the text field to the console
-                                                 System.out.println(textField.getText());
-                                                 uiController.handleQuery(textField.getText());
-                                             }
-                                         });
+                 System.out.println(textFieldLastName.getText());
+                 uiController.handleQuery(textFieldLastName.getText());
+
+                 System.out.println(textFieldEmail.getText());
+                 uiController.handleQuery(textFieldEmail.getText());
+
+                 System.out.println(textFieldDepartment.getText());
+                 uiController.handleQuery(textFieldDepartment.getText());
+
+                 System.out.println(textFieldSalary.getText());
+                 uiController.handleQuery(textFieldSalary.getText());
+             }
+         });
 
 
         // Create the BIG RED BUTTON
